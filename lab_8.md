@@ -83,20 +83,20 @@ graph LR
 
 ```mermaid
 graph TD
-    Client[Клиентская часть (SPA — браузер)]
-    LB[Backend API (FastAPI)]
-    API[Proxy (Nginx)]
-    DB[(PostgreSQL — основное хранилище)]
-    CACHE[(Redis — кеш)]
-    LOGS[Логирование]
-    AUTH[Аутентификация (JWT)]
+    Client["Клиентская часть\n(SPA — браузер)"]
+    LB["Backend API\n(FastAPI)"]
+    API["Proxy\n(Nginx)"]
+    DB[("PostgreSQL")]
+    CACHE[("Redis")]
+    LOGS["Логирование"]
+    AUTH["Аутентификация\n(JWT)"]
 
-    Client -->|HTTPS| LB
-    LB -->|Аутентификация| AUTH
-    LB -->|Proxy Pass| API
-    API -->|SQL| DB
-    API -->|Cache| CACHE
-    API -->|Write| LOGS
+    Client --> LB
+    LB --> AUTH
+    LB --> API
+    API --> DB
+    API --> CACHE
+    API --> LOGS
 
     classDef client fill:#ffd,stroke:#d8a,stroke-width:2px
     classDef server fill:#bbf,stroke:#333,stroke-width:2px
@@ -246,12 +246,12 @@ graph TD
 
 ```mermaid
 graph TD
-    HTTP[HTTP Layer (FastAPI Routes)]
-    VAL[Валидация (Pydantic)]
-    AUTH[Auth Layer (JWT проверка)]
-    SVC[Service Layer (Бизнес-логика)]
-    REPO[Repository Layer (SQLAlchemy)]
-    DB[(PostgreSQL)]
+    HTTP["HTTP Layer\n(FastAPI Routes)"]
+    VAL["Валидация\n(Pydantic)"]
+    AUTH["Auth Layer\n(JWT проверка)"]
+    SVC["Service Layer\n(Бизнес-логика)"]
+    REPO["Repository Layer\n(SQLAlchemy)"]
+    DB[("PostgreSQL")]
 
     HTTP --> VAL
     VAL --> AUTH
